@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>NLPLibSVM</groupId>
+  <artifactId>NLPLibSVM</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <repositories>  
+    <repository>  
+      <id>maven-net-cn</id>  
+      <name>Maven China Mirror</name>  
+      <url>http://mvnrepository.com/</url>  
+      <releases>  
+        <enabled>true</enabled>  
+      </releases>  
+      <snapshots>  
+        <enabled>true</enabled>  
+      </snapshots>  
+    </repository> 
+       <repository>  
+      <id>maven-net-cn2</id>  
+      <name>Maven China Mirror2</name>  
+      <url>http://clojars.org/repo/</url>  
+      <releases>  
+        <enabled>true</enabled>  
+      </releases>  
+      <snapshots>  
+        <enabled>true</enabled>  
+      </snapshots>  
+    </repository> 
+  </repositories>  
+  <pluginRepositories>  
+    <pluginRepository>  
+      <id>maven-net-cn</id>  
+      <name>Maven China Mirror</name>  
+      <url>http://mvnrepository.com/</url>  
+      <releases>  
+        <enabled>true</enabled>  
+      </releases>  
+      <snapshots>  
+        <enabled>true</enabled>  
+      </snapshots>      
+    </pluginRepository>  
+  </pluginRepositories>  
+  
+  <dependencies>
+		<dependency>
+		    <groupId>jfree</groupId>
+		    <artifactId>jfreechart</artifactId>
+		    <version>1.0.13</version>
+		</dependency>
+
+<!-- <dependency> -->
+<!--     <groupId>incanter</groupId> -->
+<!--     <artifactId>gnujaxp</artifactId> -->
+<!--     <version>1</version> -->
+<!-- </dependency> -->
+
+    </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <!-- https://mvnrepository.com/artifact/jfree/jfreechart -->
+    
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
