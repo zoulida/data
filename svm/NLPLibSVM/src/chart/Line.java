@@ -36,7 +36,12 @@ public class Line {
     
     ChartFrame mChartFrame = new ChartFrame("’€œﬂÕº", mChart);
     mChartFrame.pack();
+    
+
+    mChartFrame.setLocationRelativeTo(null);
+   
     mChartFrame.setVisible(true);
+    
 
   }
   public static CategoryDataset GetDataset()

@@ -3,7 +3,12 @@ package chart;
 
 
 import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.StringTokenizer;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -13,17 +18,19 @@ import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Month;
+import org.jfree.data.time.RegularTimePeriod;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.time.Year;
 import org.jfree.data.xy.XYDataset;
 
-public class TimeSeriesChart {
-	public static void main(String[] args) {
-		new TimeSeriesChart();
+public class TimeSeriesChartSVMR {
+	public static void main(String[] args) throws IOException {
+		new TimeSeriesChartSVMR();
 	}
 	ChartPanel frame1;
-	public TimeSeriesChart(){
-		XYDataset xydataset = createDataset();
+	public TimeSeriesChartSVMR() throws IOException{
+		XYDataset xydataset = createDataset2();
 		JFreeChart jfreechart = ChartFactory.createTimeSeriesChart("Legal & General单位信托基金价格", "日期", "价格",xydataset, true, true, true);
 		XYPlot xyplot = (XYPlot) jfreechart.getPlot();
 		DateAxis dateaxis = (DateAxis) xyplot.getDomainAxis();
@@ -44,6 +51,67 @@ public class TimeSeriesChart {
         mChartFrame.setVisible(true);
 
 	} 
+	
+	
+	private static double atof(String s)
+	{
+		return Double.valueOf(s).doubleValue();
+	}
+	
+	private static XYDataset createDataset2() throws IOException {  //这个数据集有点多，但都不难理解
+		
+		TimeSeries timeseries = new TimeSeries("legal & general欧洲指数信任",
+				org.jfree.data.time.Year.class);
+		
+		int i=0;
+		
+		
+		 BufferedReader input = new BufferedReader(new FileReader("eunite2001.t"));
+		 while(true)
+		  {
+			 
+				String line = input.readLine();
+				if(line == null) break;
+
+				StringTokenizer st = new StringTokenizer(line," \t\n\r\f:");
+
+				double target = atof(st.nextToken());
+				
+				System.out.println(i+" "+ target);
+				timeseries.add(new Year(i++),target);
+				
+		  }
+		
+		
+        
+        
+        TimeSeries timeseries1 = new TimeSeries("legal & general英国指数信任",
+                org.jfree.data.time.Month.class);
+        timeseries1.add(new Month(2, 2001), 129.59999999999999D);
+        timeseries1.add(new Month(3, 2001), 123.2D);
+        timeseries1.add(new Month(4, 2001), 117.2D);
+        timeseries1.add(new Month(5, 2001), 124.09999999999999D);
+        timeseries1.add(new Month(6, 2001), 122.59999999999999D);
+        timeseries1.add(new Month(7, 2001), 119.2D);
+        timeseries1.add(new Month(8, 2001), 116.5D);
+        timeseries1.add(new Month(9, 2001), 112.7D);
+        timeseries1.add(new Month(10, 2001), 101.5D);
+        timeseries1.add(new Month(11, 2001), 106.09999999999999D);
+        timeseries1.add(new Month(12, 2001), 110.3D);
+        timeseries1.add(new Month(1, 2002), 111.7D);
+        timeseries1.add(new Month(2, 2002), 111D);
+        timeseries1.add(new Month(3, 2002), 109.59999999999999D);
+        timeseries1.add(new Month(4, 2002), 113.2D);
+        timeseries1.add(new Month(5, 2002), 111.59999999999999D);
+        timeseries1.add(new Month(6, 2002), 108.8D);
+        timeseries1.add(new Month(7, 2002), 101.59999999999999D);
+        TimeSeriesCollection timeseriescollection = new TimeSeriesCollection();
+        timeseriescollection.addSeries(timeseries);
+        timeseriescollection.addSeries(timeseries);
+        //timeseriescollection.addSeries(timeseries1);
+        return timeseriescollection;
+    }
+	
 	 private static XYDataset createDataset() {  //这个数据集有点多，但都不难理解
 	        TimeSeries timeseries = new TimeSeries("legal & general欧洲指数信任",
 	                org.jfree.data.time.Month.class);
